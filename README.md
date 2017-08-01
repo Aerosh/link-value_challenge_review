@@ -1,4 +1,4 @@
-# link-value_challenge_review
+# linkvalue_challenge_review
 Linkvalue challenge for review usefulness classification.
 
 architecture :
