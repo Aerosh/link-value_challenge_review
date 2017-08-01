@@ -11779,9 +11779,9 @@ div#notebook {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Review-Challenge">Review Challenge<a class="anchor-link" href="#Review-Challenge">&#182;</a></h1><h2 id="D&#233;finition-du-probl&#232;me">D&#233;finition du probl&#232;me<a class="anchor-link" href="#D&#233;finition-du-probl&#232;me">&#182;</a></h2><p>Dans ce challenge, nous allons explorer divers méthodes afin de prédire si la review d'un utilisateur peut être utile pour les autres utilisateurs.</p>
-<p>Ici, il s'agit d'une prédiction binaire uniquement, "utile" ou "inutile", et nous disposons de review de PriceMinister.</p>
-<p>Dans un premier temps, nous allons explorer le dataset fourni afin de déterminer les éléments clés nécessaire afin d'obtenir un modèle adéquat à notre problèmatique. Nous allons notamment sélectionner et construire les différentes features dont nous aurions besoin.</p>
-<p>Ensuite, nous allons passer à la partie de classification, avec la sélection et la comparaison de plusieurs modèles et méthodes, afin d'avoir une vue d'ensemble sur les choix à effectuer.</p>
+<p>Ici, il s'agit d'une prédiction binaire uniquement, "utile" ou "inutile", et nous disposons de reviews de PriceMinister.</p>
+<p>Dans un premier temps, nous allons explorer le dataset fourni pour déterminer les éléments clés nécessaire afin d'obtenir un modèle adéquat à notre problèmatique. Nous allons notamment sélectionner et construire les différentes features dont nous aurions besoin.</p>
+<p>Ensuite, nous allons passer à la partie de classification, avec une sélection et comparaison de plusieurs modèles et méthodes, afin d'avoir une vue d'ensemble sur les choix à effectuer.</p>
 <p>Enfin, nous finirons sur une discussion des différents résultats et une mise en place des différents éléments pour la submission.</p>
 
 </div>
@@ -12811,10 +12811,10 @@ ApaIiIiIiEiT/P/G6z+yl32H9wAAAABJRU5ErkJggg==
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[258]:</div>
+<div class="prompt input_prompt">In&nbsp;[310]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1">## Var</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1">## Variable correlation matrix</span>
 <span class="n">corr</span> <span class="o">=</span> <span class="n">train_full</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">corr</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </pre></div>
@@ -12828,12 +12828,12 @@ ApaIiIiIiEiT/P/G6z+yl32H9wAAAABJRU5ErkJggg==
 
 
 <div class="output_area">
-<div class="prompt output_prompt">Out[258]:</div>
+<div class="prompt output_prompt">Out[310]:</div>
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x168e1af90&gt;</pre>
+<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x168d5cfd0&gt;</pre>
 </div>
 
 </div>
@@ -13146,8 +13146,9 @@ EUIIYRpJKkIIIUwjSUUIIYRpJKkIIYQwjSQVIYQQpvl/LhPxFTye5vgAAAAASUVORK5CYII=
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Donn&#233;es-texteet-construction-des-features-NLP">Donn&#233;es texteet construction des features NLP<a class="anchor-link" href="#Donn&#233;es-texteet-construction-des-features-NLP">&#182;</a></h2><p>Comme nous l'avons observé, les divers features autres que le texte semble peu propice à une bonne classification. 
-Sachant qu'une review est principalement jugé sur son contenu, nous allons construire des features à partir de ce texte en utilisant des technique de NLP. Nous indiquons prenons en compte ici seulement le contenu de la review ("review_content")</p>
+<h2 id="Donn&#233;es-texte-et-construction-des-features-NLP">Donn&#233;es texte et construction des features NLP<a class="anchor-link" href="#Donn&#233;es-texte-et-construction-des-features-NLP">&#182;</a></h2><p>Comme nous l'avons observé, les divers features autres que le texte semble peu propice à une bonne classification. 
+Sachant qu'une review est principalement jugé sur son contenu, nous allons construire des features à partir de ce texte en utilisant des technique de NLP. 
+Nous  prenons en compte ici seulement le contenu de la review ("review_content")</p>
 
 </div>
 </div>
@@ -13307,8 +13308,8 @@ Sachant qu'une review est principalement jugé sur son contenu, nous allons cons
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Nous avons désormais nos différents textes représentés en tant que feature vector dans un vocabulaire composé de l'ensemble des mots.</p>
-<h3 id="TF-IDF">TF-IDF<a class="anchor-link" href="#TF-IDF">&#182;</a></h3><p>Wordcount nous a permis d'avoir le nombre d'occurance des mots au sein d'un texte. Cependant, la longueur du texte aura une grande influence sur le nombre de mots qui apparaissent ou même les répétitions. Or, nous avons vu que la longueur n'avait pas une grande influence sur l'utilité des review. 
-Un autre problème est celui du vocabulaire commun à tous les textes, aussi bien utile que inutile. En effet, il semblerait logique de mettre en avant les termes plutôt "uniques" des bonnes reviews que ceux communs à tous.</p>
+<h3 id="TF-IDF">TF-IDF<a class="anchor-link" href="#TF-IDF">&#182;</a></h3><p>Wordcount nous a permis d'avoir le nombre d'occurance des mots au sein d'un texte. Cependant, la longueur du texte aura une grande influence sur le nombre de mots qui apparaissent ou même les répétitions.</p>
+<p>Un autre problème est celui du vocabulaire commun à tous les textes, aussi bien utile que inutile. En effet, il semblerait logique de mettre en avant les termes plutôt "uniques" des bonnes reviews que ceux communs à tous.</p>
 <p>Pour cela, nous utilisons la technique TF-IDF pour "Term Frequency and Inverse Document Frequency" qui permet non seulement de prendre en compte l'occurence de certains terme en fonction de la longeur du texte pour en retiré la fréquence de ce term dans le document, mais aussi de pénaliser les termes communs à plusieurs textes.</p>
 
 </div>
@@ -13353,9 +13354,9 @@ Un autre problème est celui du vocabulaire commun à tous les textes, aussi bie
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Latent-Sementic-Analysis">Latent Sementic Analysis<a class="anchor-link" href="#Latent-Sementic-Analysis">&#182;</a></h3><p>LSA est une méthode de réduction de feature qui permet de relier les différents termes et documents à des "conceptes", assez similair au variables latentes dans les techniques de recommendation basé sur la factorisation de matrice.</p>
-<p>LSA applique une Singular Value Decomposition (SVD) à la matrice TF-IDF. Cela à plusieurs avantages, notamment celui de réduite le nombre de dimension à un subset qui est beaucoup plus "descriptif". Nous avons donc un matrix features plus dense.</p>
-<p>Certaines documentations affirment que la SVD réduirait le bruit de notre matrices et la densité apporterait une amélioration de la classification.  Un avantage personnel que je constate, c'est la transformation de donnée dite "dures" (féquence de mots, ...) à des données plus "abstraites (conceptes, sujets, ...) qui découlerait plus d'une analyse de texte que d'une simple lecture froide sans réflexion.</p>
+<h3 id="Latent-Sementic-Analysis">Latent Sementic Analysis<a class="anchor-link" href="#Latent-Sementic-Analysis">&#182;</a></h3><p>LSA est une méthode de réduction de feature qui permet de relier les différents termes et documents à des "conceptes", assez similair aux variables latentes dans les techniques de recommendation basé sur la factorisation de matrice.</p>
+<p>LSA applique une Singular Value Decomposition (SVD) à la matrice TF-IDF. Cela à plusieurs avantages, notamment celui de réduire le nombre de dimensions à un subset qui est beaucoup plus "descriptif". Nous avons donc un matrix features plus dense.</p>
+<p>Certaines documentations affirment que la SVD réduirait le bruit de notre matrices et la densité apporterait une amélioration de la classification.  Un avantage personnel que nous constatons, c'est la transformation de donnée dite "dures" (féquence de mots, ...) à des données plus "abstraites (conceptes, sujets, ...) qui découlerait plus d'une analyse de texte que d'une simple lecture froide sans réflexion.</p>
 
 </div>
 </div>
@@ -13402,7 +13403,7 @@ Un autre problème est celui du vocabulaire commun à tous les textes, aussi bie
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Classificateurs">Classificateurs<a class="anchor-link" href="#Classificateurs">&#182;</a></h2><p>Désormais, nous avons des features, certes simples, mais qui tente de décrire au mieux nos reviews. Nous allons à présent entraîner un classificateur afin d'obtenir un modèle mathématique qui puisse classifier nos review aussi bien que possible. Nous allons essayer l'une des techniques les plus connue, la Logistic Regression, afin d'obtenir une première baseline sur laquelle nous pourrons nous baser afin d'apporter des amélioration.</p>
+<h2 id="Classificateurs">Classificateurs<a class="anchor-link" href="#Classificateurs">&#182;</a></h2><p>Désormais, nous avons des features, certes simples, mais qui tente de décrire au mieux nos reviews. Nous allons à présent entraîner un classificateur afin d'obtenir un modèle mathématique qui puisse classifier nos reviews  Nous allons essayer l'une des techniques les plus connue, la régression logistique, afin d'obtenir une première baseline sur laquelle nous pourrons nous baser afin d'apporter des amélioration.</p>
 <h3 id="Logistic-Regression">Logistic Regression<a class="anchor-link" href="#Logistic-Regression">&#182;</a></h3>
 </div>
 </div>
@@ -13482,9 +13483,6 @@ Un autre problème est celui du vocabulaire commun à tous les textes, aussi bie
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Comparison to simple results such as random or only ones results</span>
-<span class="c1">#fpr_rt_lm, tpr_rt_lm, _ = roc_curve(val_y_true, val_y_hat)</span>
-<span class="c1">#plt.plot(fpr_rt_lm, tpr_rt_lm)</span>
-<span class="c1">#plt.show()</span>
 <span class="k">print</span><span class="p">(</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">val_y_true</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">val_y_true</span><span class="p">)))</span>
 <span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="n">randBinList</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">n</span><span class="p">:</span> <span class="p">[</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span>
@@ -13577,7 +13575,7 @@ Un autre problème est celui du vocabulaire commun à tous les textes, aussi bie
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Contrairement aux premières intuitions, il semble que LSA n'améliore pas la précision.
-En regardant notre analyse du dataset faite précédemment, on remarque aussi que la plupart des produits nônt quûne seul review et que, par conséquent, il semblerait normal que les reviews aient des sujets assez différents. Cependant, après plusieurs essais, il se trouve que le training et SVD soit assez sensible à plusieurs hyper-paramètres. Il conviendra donc, plus tard, de trouver un moyen d'optimiser ces paramètres.</p>
+En regardant notre analyse du dataset faite précédemment, on remarque aussi que la plupart des produits n'ont qu'une seul review et que, par conséquent, il semblerait normal que les reviews aient des sujets assez différents. Cependant, après plusieurs essais, il se trouve que le training et SVD soit assez sensible à plusieurs hyper-paramètres et mériterait peut être de plus longues explorations.</p>
 
 </div>
 </div>
@@ -13755,7 +13753,7 @@ computing lsvm_clf_pip ...
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>L'ensemble des résultats semblent proches et en tout cas en dessous d0une simple régression linéaire. Cependant, ces différents classifiers peuvent être optimisé en ce qui concerne les hyper-paramètres. Cependant, on peut déjà éliminer Gaussian Naive Bayes et K Nearest Neighbors ( tdlr : Dans le cas de KNN, nous avons testé avec différentes valeurs de K, sans succès au niveau de la précision).</p>
+<p>L'ensemble des résultats semblent proches et en tout cas en dessous de la régression logistique . Cependant, ces différents classifiers peuvent être optimisé en ce qui concerne les hyper-paramètres. Cependant, on peut déjà éliminer Gaussian Naive Bayes et K Nearest Neighbors ( tdlr : Dans le cas de KNN, nous avons testé avec différentes valeurs de K, sans succès au niveau de la précision).</p>
 <p>Une investigation intéressante, serait l'utilisation de LSA pour ces autres classificateurs.</p>
 
 </div>
@@ -13937,7 +13935,7 @@ computing lsvm_clf_pip ...
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Nous observé jusqu'à présent les limitations du contenu de la review avec de classifiers non-optimisé au niveau des hyper-paramètres. Cependant, nous n'avons pas pris en compte d'autres facteurs qui puissent paraître important tel que :</p>
 <ul>
-<li>La lisibilité et la facilité de lecture. Une review trop complexe ou illisible ne sera que peut utile.</li>
+<li>La lisibilité et la facilité de lecture. Une review trop complexe ou illisible ne sera que peu utile.</li>
 <li>Le titre. Il semble important d'attirer l'attention sur une review spécifique avec un titre accrocheur</li>
 </ul>
 <p>Dans les prochaines sections, nous allon tenter d'utilisé ces features potentiels et les combiner à nos features actuelles.</p>
@@ -14006,7 +14004,7 @@ computing lsvm_clf_pip ...
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>On remarque une certaines amélioration en ajoutant cette feature.</p>
+<p>On remarque une certaines améliorations en ajoutant cette feature.</p>
 <h3 id="&#160;Text-Statistics">&#160;Text Statistics<a class="anchor-link" href="#&#160;Text-Statistics">&#182;</a></h3><p>Concernant la facilité de lecture ou la lisibilité , ils découlent des même variables : le nombre de mot, de phrases et de caractère. Nous pouvont donc ajouter ces composant au sein de notre pipeline.</p>
 
 </div>
@@ -14078,8 +14076,8 @@ computing lsvm_clf_pip ...
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>L'ajout de features supplémentaire, commep prédit par notre analyse de la correlation, n'apporte que très peu d'amélioration.</p>
-<p>Notre teste final en ce qui concerne les classificateurs sera l'utilisation d'un classificateur non-linéaire: SVM.</p>
+<p>L'ajout de features supplémentaire, comme prédit par notre analyse de la correlation, n'apporte que très peu d'amélioration.</p>
+<h3 id="&#160;M&#233;thodes-non-lin&#233;aire">&#160;M&#233;thodes non-lin&#233;aire<a class="anchor-link" href="#&#160;M&#233;thodes-non-lin&#233;aire">&#182;</a></h3><p>Notre teste final en ce qui concerne les classificateurs sera l'utilisation d'un classificateur non-linéaire: SVM.</p>
 
 </div>
 </div>
@@ -14169,7 +14167,7 @@ computing lsvm_clf_pip ...
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Les résultats avec des kernel non-linéaire pour SVM semblent peu convaincant (après plusieurs essais).</p>
-<p>Il semblerait que nous ayons utilisé et déduit un bon nombre de features possible et une méthode de classification correcte. 
+<h3 id="Cross-Validation-et-optimisation-des-hyper-param&#232;tres">Cross-Validation et optimisation des hyper-param&#232;tres<a class="anchor-link" href="#Cross-Validation-et-optimisation-des-hyper-param&#232;tres">&#182;</a></h3><p>Il semblerait que nous ayons utilisé et déduit un bon nombre de features possibles et une méthode de classification correcte. 
 Désormais, il semblerait judicieux d'optimizer LogisticRegession classifier et d'ajouter des méthodes de cross-validation.</p>
 
 </div>
@@ -15565,11 +15563,11 @@ Nous discuterons dans la conclusions des lessons à garder de cette recherche et
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Conclusion">Conclusion<a class="anchor-link" href="#Conclusion">&#182;</a></h2><p>Malgré un problème qui peut sembler simple, il est vrai que la difficulté est au rendez-vous pour augmenter les performances actuelles.</p>
-<p>Premièrement, après une première analyse des données, notre modèle mathématique doit arriver à intégrer une notion générale de l'utilité. Comme on peut le constater sur différent contenu de review, les reviews intutiles peuvent s'apparenter à des experiences personneé ou des histoire qui n'ont pas forcément un rapport direct avec le produit.</p>
+<p>Premièrement, après une première analyse des données, notre modèle mathématique doit arriver à intégrer une notion générale de l'utilité. Après une exploration des données, les reviews intutiles peuvent s'apparenter à des experiences personnelles ou des histoire qui n'ont pas forcément un rapport direct avec le produit. Alors que les review utiles sont plus informatives sur le produit en lui-même.</p>
 <p>Deuxièmement, la plupart des algorithmes de classification utilisés ont commun point commun d'être linéaire, assumant donc que nos données sont linéairement séparable. Cependant, plusieurs publications scientifiques et quelques testes effectué ici ont démontré que des classificateurs non-linéaires n'étaient pas forcément plus performant en terme de précision.</p>
-<p>Au final, nous avons obtenues des performances correctes, en tout cas meilleures que des estimateurss random. Nous avons réussi à construire un modèle mathématiques plus ou moins performant. Voici les différents enseignements et améliorations possibles pour de futurs expériences :</p>
+<p>Au final, nous avons obtenues des performances correctes, en tout cas meilleures que des estimateurs aléatoires. Nous avons réussi à construire un modèle mathématiques plus ou moins performant. Voici les différents enseignements et améliorations possibles pour de futurs expériences :</p>
 <ul>
-<li><p>L'ensemble des données sont à analyser et peuvent apporter de légères améliorations. Cependant, trop de features inutiles ne serait non plus pas probant et pourrait même ajouter du bruit (noise).</p>
+<li><p>L'ensemble des données sont à analyser avec minutie et peuvent apporter de légères améliorations, mais surtout une bonne compréhension sur leurs diverses propriétés. Cependant, trop de features inutiles  pourrait ajouter du bruit (noise) et réduire notre précision.</p>
 </li>
 <li><p>L'analyse des possible pre-process en NLP a été très instructive. En effet, LSA est souvent plus performant dans le cas de classification de textes en diverses catégories, mais c'est montré peu utile pour notre problème.</p>
 </li>
@@ -15691,7 +15689,7 @@ Nous discuterons dans la conclusions des lessons à garder de cette recherche et
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[297]:</div>
+<div class="prompt input_prompt">In&nbsp;[311]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Export Notebook in HTML</span>
@@ -15709,7 +15707,7 @@ Nous discuterons dans la conclusions des lessons à garder de cette recherche et
 
 
 <div class="output_area">
-<div class="prompt output_prompt">Out[297]:</div>
+<div class="prompt output_prompt">Out[311]:</div>
 
 
 
